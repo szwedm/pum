@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/topScorers_item"
+        android:title="Top Scorers"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_top_scorers"/>
+    <item
+        android:id="@+id/calendar_item"
+        android:title="Calendar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_calendar"/>
+    <item
+        android:id="@+id/leagueTable_item"
+        android:title="League Table"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_table"/>
+</menu>
