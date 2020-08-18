@@ -1,20 +1,18 @@
 package com.mm.bookmaker;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
+public class CalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calendar);
 
 
     }
@@ -32,16 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
         if (item.getItemId() == R.id.calendar_item) {
-            Intent intent = new Intent(this, CalendarActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivityForResult(intent,1);
 
         }
         if (item.getItemId() == R.id.topScorers_item) {
-            Intent intent = new Intent(this, TopScorersActivity.class);
+            Intent intent = new Intent(this, LeagueTableActivity.class);
             startActivityForResult(intent,1);
 
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
