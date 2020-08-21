@@ -1,27 +1,56 @@
 package com.mm.bookmaker.models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.time.LocalDate;
 
+@Entity
 public class Match {
 
+    @PrimaryKey
     private Long id;
+
+    @ColumnInfo(name = "date")
     private LocalDate date;
-    private Team[] teams = new Team[2];
+
+    @ColumnInfo(name = "team1")
+    private Team team1;
+
+    @ColumnInfo(name = "team2")
+    private Team team2;
+
+    @ColumnInfo(name = "status")
     private String status; // "coming" or "finished"
-    private int team0Goals;
+
+    @ColumnInfo(name = "team1_goals")
     private int team1Goals;
+
+    @ColumnInfo(name = "team2_goals")
+    private int team2Goals;
 
     public Match() {
     }
 
-    public Match(Long id, LocalDate date, Team team0, Team team1) {
+    public Match(Long id, LocalDate date, Team team1, Team team2) {
         this.id = id;
         this.date = date;
-        this.teams[0] = team0;
-        this.teams[1] = team1;
+        this.team1 = team1;
+        this.team2 = team2;
         this.status = "coming";
-        this.team0Goals = 0;
         this.team1Goals = 0;
+        this.team2Goals = 0;
+    }
+
+    public Match(Long id, LocalDate date, Team team1, Team team2, int team1Goals, int team2Goals) {
+        this.id = id;
+        this.date = date;
+        this.team1 = team1;
+        this.team2 = team2;
+        this.status = "finished";
+        this.team1Goals = team1Goals;
+        this.team2Goals = team2Goals;
     }
 
     public Long getId() {
@@ -40,15 +69,13 @@ public class Match {
         this.status = status;
     }
 
-    public int getTeam0Goals() {
-        return team0Goals;
-    }
-
     public int getTeam1Goals() {
         return team1Goals;
     }
 
+    public int getTeam2Goals() { return team2Goals; }
+
     public String getScore() {
-        return team0Goals + " - " + team1Goals;
+        return team1Goals + " - " + team2Goals;
     }
 }

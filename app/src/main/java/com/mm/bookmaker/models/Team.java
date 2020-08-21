@@ -1,23 +1,40 @@
 package com.mm.bookmaker.models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 public class Team {
 
+    @PrimaryKey
     private Long id;
+
+    @ColumnInfo(name = "name")
     private String name;
-    private Set<Match> matchesPlayed = new HashSet<Match>();
+
+    @ColumnInfo(name = "matches")
+    private int matchesPlayed;
+
+    @ColumnInfo(name = "wins")
     private int wins;
+
+    @ColumnInfo(name = "loses")
     private int loses;
+
+    @ColumnInfo(name = "draws")
     private int draws;
 
     public Team() {
     }
 
-    public Team(Long id, String name, int wins, int loses, int draws) {
+    public Team(Long id, String name, int matchesPlayed, int wins, int loses, int draws) {
         this.id = id;
         this.name = name;
+        this.matchesPlayed = matchesPlayed;
         this.wins = wins;
         this.loses = loses;
         this.draws = draws;
@@ -31,7 +48,7 @@ public class Team {
         return name;
     }
 
-    public Set<Match> getMatchesPlayed() {
+    public int getMatchesPlayed() {
         return matchesPlayed;
     }
 
@@ -39,9 +56,7 @@ public class Team {
         return wins;
     }
 
-    public int getLoses() {
-        return loses;
-    }
+    public int getLoses() { return loses; }
 
     public int getDraws() {
         return draws;
@@ -55,7 +70,10 @@ public class Team {
         loses++;
     }
 
-    public void draw() {
-        draws++;
+    public void draw() { draws++; }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
