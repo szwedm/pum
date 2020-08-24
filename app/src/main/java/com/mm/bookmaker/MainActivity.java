@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent,1);
 
         }
+        if (item.getItemId() == R.id.refreshData_item) {
+            // HTTP GET to retrieve new data from API
+            // JSON parsing
+            // DB update
+        }
         return super.onOptionsItemSelected(item);
     }
 

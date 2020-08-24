@@ -33,10 +33,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     def room_version = "2.2.5"
-
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
+
+    // for HTTP requests
+    implementation 'com.android.volley:volley:1.1.1'
+
+    //for JSON parsing
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

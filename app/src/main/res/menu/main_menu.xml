@@ -16,4 +16,9 @@
         android:title="League Table"
         app:showAsAction="always"
         android:icon="@drawable/ic_table"/>
+    <item
+        android:id="@+id/refreshData_item"
+        android:title="Refresh Data"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_refresh_data"/>
 </menu>
