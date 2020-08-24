@@ -21,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "appDB").build();
+        db = AppDatabase.getInstance(getApplicationContext());
     }
 
     @Override

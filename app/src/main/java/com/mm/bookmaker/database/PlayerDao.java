@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.mm.bookmaker.models.Player;
 
@@ -22,9 +23,15 @@ public interface PlayerDao {
             "last_name LIKE :lastName LIMIT 1")
     Player findByName(String firstName, String lastName);
 
+    @Query("SELECT * FROM player WHERE id LIKE :id")
+    Player findById(Long id);
+
     @Insert
-    void insertAll(Player... players);
+    public void insertPlayer(Player... players);
+
+    @Update
+    public void updatePlayer(Player... players);
 
     @Delete
-    void delete(Player player);
+    public void deletePlayer(Player... players);
 }

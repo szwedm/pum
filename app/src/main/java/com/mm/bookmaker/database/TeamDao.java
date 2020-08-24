@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.mm.bookmaker.models.Team;
 
@@ -21,9 +22,15 @@ public interface TeamDao {
     @Query("SELECT * FROM team WHERE name LIKE :teamName LIMIT 1")
     Team findByName(String teamName);
 
+    @Query("SELECT * FROM team WHERE id LIKE :id")
+    Team findById(Long id);
+
     @Insert
-    void insertAll(Team... teams);
+    public void insertTeam(Team... teams);
+
+    @Update
+    public void updateTeam(Team... teams);
 
     @Delete
-    void delete(Team team);
+    public void deleteTeam(Team... teams);
 }

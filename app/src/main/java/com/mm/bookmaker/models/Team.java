@@ -4,13 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 public class Team {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private Long id;
 
     @ColumnInfo(name = "name")

@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.mm.bookmaker.models.Match;
 
@@ -22,9 +23,15 @@ public interface MatchDao {
     @Query("SELECT * FROM `match` WHERE date LIKE :matchDate")
     Match findByDate(LocalDate matchDate);
 
+    @Query("SELECT * FROM `match` WHERE id LIKE :id")
+    Match findById(Long id);
+
     @Insert
-    void insertAll(Match... matches);
+    public void insertMatch(Match... matches);
+
+    @Update
+    public void updateMatch(Match... matches);
 
     @Delete
-    void delete(Match match);
+    public void deleteMatch(Match... matches);
 }

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 public class Match {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private Long id;
 
     @ColumnInfo(name = "date")
