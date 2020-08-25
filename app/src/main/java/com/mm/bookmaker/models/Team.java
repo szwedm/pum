@@ -2,6 +2,7 @@ package com.mm.bookmaker.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -28,6 +29,7 @@ public class Team {
     public Team() {
     }
 
+    @Ignore
     public Team(Long id, String name, int matchesPlayed, int wins, int loses, int draws) {
         this.id = id;
         this.name = name;
@@ -41,22 +43,48 @@ public class Team {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getMatchesPlayed() {
         return matchesPlayed;
     }
 
+    public void setMatchesPlayed(int matchesPlayed) {
+        this.matchesPlayed = matchesPlayed;
+    }
+
     public int getWins() {
         return wins;
     }
 
-    public int getLoses() { return loses; }
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLoses() {
+        return loses;
+    }
+
+    public void setLoses(int loses) {
+        this.loses = loses;
+    }
 
     public int getDraws() {
         return draws;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
     }
 
     public void win() {
