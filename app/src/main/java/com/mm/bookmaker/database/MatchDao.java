@@ -8,7 +8,6 @@ import androidx.room.Update;
 
 import com.mm.bookmaker.models.Match;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Dao
@@ -21,7 +20,7 @@ public interface MatchDao {
     List<Match> loadAllByIds(Long[] matchIds);
 
     @Query("SELECT * FROM `match` WHERE date LIKE :matchDate")
-    Match findByDate(LocalDate matchDate);
+    Match findByDate(String matchDate);
 
     @Query("SELECT * FROM `match` WHERE id LIKE :id")
     Match findById(Long id);

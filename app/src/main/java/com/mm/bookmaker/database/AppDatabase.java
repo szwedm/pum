@@ -10,7 +10,7 @@ import com.mm.bookmaker.models.Match;
 import com.mm.bookmaker.models.Player;
 import com.mm.bookmaker.models.Team;
 
-@Database(entities = {Player.class, Team.class, Match.class}, version = 1)
+@Database(entities = {Player.class, Team.class, Match.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
