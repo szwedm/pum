@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 public class Team {
 
     @PrimaryKey(autoGenerate = true)
-    private Long id;
+    private int id;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -30,7 +30,7 @@ public class Team {
     }
 
     @Ignore
-    public Team(Long id, String name, int matchesPlayed, int wins, int loses, int draws) {
+    public Team(int id, String name, int matchesPlayed, int wins, int loses, int draws) {
         this.id = id;
         this.name = name;
         this.matchesPlayed = matchesPlayed;
@@ -39,11 +39,11 @@ public class Team {
         this.draws = draws;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
