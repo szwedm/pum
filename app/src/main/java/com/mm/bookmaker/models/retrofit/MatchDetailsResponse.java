@@ -19,7 +19,7 @@ public class MatchDetailsResponse {
         this.api = api;
     }
 
-    public class Api {
+    public static class Api {
 
         @SerializedName("results")
         @Expose
@@ -45,7 +45,7 @@ public class MatchDetailsResponse {
             this.fixtures = fixtures;
         }
 
-        public class Fixture {
+        public static class Fixture {
 
             @SerializedName("fixture_id")
             @Expose
@@ -155,7 +155,7 @@ public class MatchDetailsResponse {
                 this.goalsAwayTeam = goalsAwayTeam;
             }
 
-            public class AwayTeam {
+            public static class AwayTeam {
 
                 @SerializedName("team_id")
                 @Expose
@@ -182,7 +182,7 @@ public class MatchDetailsResponse {
                 }
             }
 
-            public class HomeTeam {
+            public static class HomeTeam {
 
                 @SerializedName("team_id")
                 @Expose
