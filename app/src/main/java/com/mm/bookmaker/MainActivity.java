@@ -1,7 +1,9 @@
 package com.mm.bookmaker;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -100,13 +102,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void setMoneyToBet(View view){
+        float result;
         String betStr=moneyToBet.getText().toString();
         if(betStr.isEmpty()){
             return;
         }
         float bet= Float.valueOf(betStr.replace(",","."));
-        float result= money-bet;
-        moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
+        if(win1.isChecked()){
+            result= money+2*bet;
+            moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
+            money=result;
+        }
+        else if(win2.isChecked()){
+            result= money-bet;
+            moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
+            money=result;
+        }
+        else if(draw.isChecked()){
+            result= money-bet;
+            moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
+            money=result;
+        }
+        else{
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage("Musisz obstawić jakiś mecz");
+            alert.setTitle("UWAGA!");
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+
+                }
+            });
+
+            alert.show();
+        }
     }
 
 
