@@ -1,25 +1,39 @@
 package com.mm.bookmaker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.mm.bookmaker.api.ApiCallback;
+import com.mm.bookmaker.api.ApiServiceGenerator;
 import com.mm.bookmaker.database.AppDatabase;
+import com.mm.bookmaker.extractors.StandingsResponseToModels;
+import com.mm.bookmaker.models.Team;
+import com.mm.bookmaker.models.retrofit.StandingsResponse;
+import com.mm.bookmaker.services.MatchService;
+import com.mm.bookmaker.services.PlayerService;
+import com.mm.bookmaker.services.TeamService;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppDatabase db;
+    private final AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+
+    private TeamService teamService;
+    private PlayerService playerService;
+    private MatchService matchService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        db = AppDatabase.getInstance(getApplicationContext());
     }
 
     @Override
@@ -49,6 +63,19 @@ public class MainActivity extends AppCompatActivity {
             // HTTP GET to retrieve new data from API
             // JSON parsing
             // DB update
+            ApiCallback<StandingsResponse> standingsResponse = new ApiCallback<>();
+            ArrayList<Team> teams = new ArrayList<>();
+
+            teamService = ApiServiceGenerator.createService(TeamService.class);
+            Call<StandingsResponse> callStandings = teamService.getTeamsAndStandings();
+            callStandings.enqueue(standingsResponse);
+            StandingsResponseToModels.extractFromResponse(
+                    standingsResponse.getResponse(),
+                    teams);
+
+            for (Team team : teams) {
+                db.teamDao().insertTeam(team);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

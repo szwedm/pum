@@ -6,7 +6,7 @@ import retrofit2.Response;
 
 public class ApiCallback<T> implements Callback<T> {
 
-    public T t;
+    private T t;
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
@@ -16,5 +16,9 @@ public class ApiCallback<T> implements Callback<T> {
     @Override
     public void onFailure(Call<T> call, Throwable t) {
         t.printStackTrace();
+    }
+
+    public T getResponse() {
+        return t;
     }
 }
