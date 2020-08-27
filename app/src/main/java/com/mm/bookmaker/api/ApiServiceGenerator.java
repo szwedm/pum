@@ -1,4 +1,4 @@
-package com.mm.bookmaker.controllers;
+package com.mm.bookmaker.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
