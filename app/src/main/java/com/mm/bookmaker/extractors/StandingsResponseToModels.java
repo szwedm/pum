@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StandingsResponseToModels {
 
-    public static void extractFromResponse(StandingsResponse response, ArrayList<Team> teams) {
+    public static void extractFromResponse(StandingsResponse response, List<Team> teams) {
         List<StandingsResponse.Api.Standing> standings = new ArrayList<>(response.getApi().getStandings().get(0));
         for(StandingsResponse.Api.Standing standing : standings) {
             teams.add(new Team(standing.getTeamId(),

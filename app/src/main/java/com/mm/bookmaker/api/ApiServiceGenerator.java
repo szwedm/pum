@@ -7,8 +7,7 @@ public class ApiServiceGenerator {
 
     private static final String BASE_URL = "https://v2.api-football.com/";
 
-    private static Retrofit.Builder builder
-            = new Retrofit.Builder()
+    private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create());
 
