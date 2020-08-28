@@ -26,6 +26,6 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase buildDatabaseInstance(Context context) {
         return Room.databaseBuilder(context,
-                AppDatabase.class, "appDB.db").allowMainThreadQueries().build();
+                AppDatabase.class, "Bookmaker.db").allowMainThreadQueries().build();
     }
 }

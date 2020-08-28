@@ -2,11 +2,12 @@ package com.mm.bookmaker.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
-public class Team {
+import java.io.Serializable;
+
+@Entity(tableName = "team")
+public class Team implements Serializable {
 
     @PrimaryKey
     private Integer id;
@@ -32,10 +33,6 @@ public class Team {
     @ColumnInfo(name = "draws")
     private int draws;
 
-    public Team() {
-    }
-
-    @Ignore
     public Team(Integer id, String name, int rank, int matchesPlayed, int points, int wins, int loses, int draws) {
         this.id = id;
         this.name = name;

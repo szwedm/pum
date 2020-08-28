@@ -80,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<StandingsResponse> call, Response<StandingsResponse> response) {
                     StandingsResponse standingsResponse = response.body();
                     StandingsResponseToModels.extractFromResponse(standingsResponse, teams);
+                    for (Team team : teams) {
+                        db.teamDao().insertTeam(team);
+                    }
                 }
 
                 @Override
@@ -91,4 +94,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
+    }
 }

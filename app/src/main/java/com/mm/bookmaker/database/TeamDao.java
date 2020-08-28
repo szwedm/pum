@@ -17,20 +17,20 @@ public interface TeamDao {
     List<Team> getAll();
 
     @Query("SELECT * FROM team WHERE id IN (:teamIds)")
-    List<Team> loadAllByIds(Long[] teamIds);
+    List<Team> loadAllByIds(Integer[] teamIds);
 
     @Query("SELECT * FROM team WHERE name LIKE :teamName LIMIT 1")
     Team findByName(String teamName);
 
     @Query("SELECT * FROM team WHERE id LIKE :id")
-    Team findById(Long id);
+    Team findById(Integer id);
 
     @Insert
-    public void insertTeam(Team... teams);
+    void insertTeam(Team team);
 
     @Update
-    public void updateTeam(Team... teams);
+    void updateTeam(Team team);
 
     @Delete
-    public void deleteTeam(Team... teams);
+    void deleteTeam(Team team);
 }

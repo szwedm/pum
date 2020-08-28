@@ -17,21 +17,21 @@ public interface PlayerDao {
     List<Player> getAll();
 
     @Query("SELECT * FROM player WHERE id IN (:playerIds)")
-    List<Player> loadAllByIds(Long[] playerIds);
+    List<Player> loadAllByIds(Integer[] playerIds);
 
     @Query("SELECT * FROM player WHERE first_name LIKE :firstName AND " +
             "last_name LIKE :lastName LIMIT 1")
     Player findByName(String firstName, String lastName);
 
     @Query("SELECT * FROM player WHERE id LIKE :id")
-    Player findById(Long id);
+    Player findById(Integer id);
 
     @Insert
-    public void insertPlayer(Player... players);
+    void insertPlayer(Player... players);
 
     @Update
-    public void updatePlayer(Player... players);
+    void updatePlayer(Player... players);
 
     @Delete
-    public void deletePlayer(Player... players);
+    void deletePlayer(Player... players);
 }
