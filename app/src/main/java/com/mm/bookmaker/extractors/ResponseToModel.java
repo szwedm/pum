@@ -29,13 +29,23 @@ public class ResponseToModel {
     public static void extractMatchesFromMatchesResponse(MatchesResponse response, List<Match> matches) {
         List<MatchesResponse.Api.Fixture> fixtures = new ArrayList<>(response.getApi().getFixtures());
         for (MatchesResponse.Api.Fixture fixture : fixtures) {
-            matches.add(new Match(fixture.getFixtureId(),
-                    fixture.getEventDate(),
-                    fixture.getStatusShort(),
-                    fixture.getHomeTeam().getTeamName(),
-                    fixture.getAwayTeam().getTeamName(),
-                    fixture.getGoalsHomeTeam(),
-                    fixture.getGoalsAwayTeam()));
+            if (fixture.getStatusShort().equals("FT")) {
+                matches.add(new Match(fixture.getFixtureId(),
+                        fixture.getEventDate(),
+                        fixture.getStatusShort(),
+                        fixture.getHomeTeam().getTeamName(),
+                        fixture.getAwayTeam().getTeamName(),
+                        fixture.getGoalsHomeTeam(),
+                        fixture.getGoalsAwayTeam()));
+            } else {
+                matches.add(new Match(fixture.getFixtureId(),
+                        fixture.getEventDate(),
+                        fixture.getStatusShort(),
+                        fixture.getHomeTeam().getTeamName(),
+                        fixture.getAwayTeam().getTeamName(),
+                        0,
+                        0));
+            }
         }
     }
 

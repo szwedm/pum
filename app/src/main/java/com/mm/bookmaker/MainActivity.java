@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent,1);
         } else if (item.getItemId() == R.id.refreshData_item) {
             saveTeamsFromAPI();
-            //saveMatchesFromAPI();
             saveTopScorersFromAPI();
+            saveMatchesFromAPI();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -107,15 +107,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MatchesResponse> call, Response<MatchesResponse> response) {
                 MatchesResponse matchesResponse = response.body();
-                /*
-                NEEDS A FIX
-                Cannot create more than 1 match object from matches ArrayList
-
                 ResponseToModel.extractMatchesFromMatchesResponse(matchesResponse, matches);
                 for (Match match : matches) {
                     db.matchDao().insertMatch(match);
                 }
-                */
             }
 
             @Override
