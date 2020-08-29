@@ -26,11 +26,11 @@ public interface MatchDao {
     Match findById(Integer id);
 
     @Insert
-    void insertMatch(Match... matches);
+    void insertMatch(Match match);
 
     @Update
-    void updateMatch(Match... matches);
+    void updateMatch(Match match);
 
     @Delete
-    void deleteMatch(Match... matches);
+    void deleteMatch(Match match);
 }

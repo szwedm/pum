@@ -107,19 +107,4 @@ public class Team implements Serializable {
     public void setDraws(int draws) {
         this.draws = draws;
     }
-
-    public void win() {
-        wins++;
-    }
-
-    public void loss() {
-        loses++;
-    }
-
-    public void draw() { draws++; }
-
-    @Override
-    public String toString() {
-        return name;
-    }
 }

@@ -27,11 +27,11 @@ public interface PlayerDao {
     Player findById(Integer id);
 
     @Insert
-    void insertPlayer(Player... players);
+    void insertPlayer(Player player);
 
     @Update
-    void updatePlayer(Player... players);
+    void updatePlayer(Player player);
 
     @Delete
-    void deletePlayer(Player... players);
+    void deletePlayer(Player player);
 }

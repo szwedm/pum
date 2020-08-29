@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MatchDetailsResponse {
+public class MatchesResponse {
 
     @SerializedName("api")
     @Expose
@@ -55,14 +55,6 @@ public class MatchDetailsResponse {
             @Expose
             private String eventDate;
 
-            @SerializedName("event_timestamp")
-            @Expose
-            private Integer eventTimestamp;
-
-            @SerializedName("status")
-            @Expose
-            private String status;
-
             @SerializedName("statusShort")
             @Expose
             private String statusShort;
@@ -97,22 +89,6 @@ public class MatchDetailsResponse {
 
             public void setEventDate(String eventDate) {
                 this.eventDate = eventDate;
-            }
-
-            public Integer getEventTimestamp() {
-                return eventTimestamp;
-            }
-
-            public void setEventTimestamp(Integer eventTimestamp) {
-                this.eventTimestamp = eventTimestamp;
-            }
-
-            public String getStatus() {
-                return status;
-            }
-
-            public void setStatus(String status) {
-                this.status = status;
             }
 
             public String getStatusShort() {
@@ -157,21 +133,9 @@ public class MatchDetailsResponse {
 
             public static class AwayTeam {
 
-                @SerializedName("team_id")
-                @Expose
-                private Integer teamId;
-
                 @SerializedName("team_name")
                 @Expose
                 private String teamName;
-
-                public Integer getTeamId() {
-                    return teamId;
-                }
-
-                public void setTeamId(Integer teamId) {
-                    this.teamId = teamId;
-                }
 
                 public String getTeamName() {
                     return teamName;
@@ -184,21 +148,9 @@ public class MatchDetailsResponse {
 
             public static class HomeTeam {
 
-                @SerializedName("team_id")
-                @Expose
-                private Integer teamId;
-
                 @SerializedName("team_name")
                 @Expose
                 private String teamName;
-
-                public Integer getTeamId() {
-                    return teamId;
-                }
-
-                public void setTeamId(Integer teamId) {
-                    this.teamId = teamId;
-                }
 
                 public String getTeamName() {
                     return teamName;
