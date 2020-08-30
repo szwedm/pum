@@ -6,27 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <CheckBox
-        android:id="@+id/winSecondTeamCB"
-        android:layout_width="48dp"
-        android:layout_height="31dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="524dp"
-        android:text="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="onCheckboxClicked" />
 
-    <CheckBox
-        android:id="@+id/drawCB"
-        android:layout_width="48dp"
-        android:layout_height="31dp"
-        android:layout_marginEnd="184dp"
-        android:layout_marginBottom="524dp"
-        android:text="X"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="onCheckboxClicked" />
 
     <TextView
         android:id="@+id/textView"
@@ -50,19 +30,10 @@
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/winFirstTeamCB"
-        android:layout_width="48dp"
-        android:layout_height="31dp"
-        android:layout_marginEnd="232dp"
-        android:layout_marginBottom="524dp"
-        android:text="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="onCheckboxClicked" />
+
 
     <EditText
-        android:id="@+id/moneyToBet"
+        android:id="@+id/moneyToBetET"
         android:layout_width="91dp"
         android:layout_height="45dp"
         android:layout_marginEnd="40dp"
@@ -83,5 +54,43 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <RadioGroup
+        android:id="@+id/rdGroup"
+        android:layout_width="179dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="520dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/winFirstTeamCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="1"
+            tools:layout_editor_absoluteX="82dp"
+            tools:layout_editor_absoluteY="161dp" />
+
+
+        <RadioButton
+            android:id="@+id/drawCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="X"
+            tools:layout_editor_absoluteX="143dp"
+            tools:layout_editor_absoluteY="161dp" />
+
+        <RadioButton
+            android:id="@+id/winSecondTeamCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="2"
+            tools:layout_editor_absoluteX="203dp"
+            tools:layout_editor_absoluteY="162dp" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

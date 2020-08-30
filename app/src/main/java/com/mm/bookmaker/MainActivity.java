@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.mm.bookmaker.database.AppDatabase;
@@ -26,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     List<Team> team= new ArrayList<>();
     TextView moneyToSpend;
-    CheckBox win1;
+    RadioButton win1;
     EditText moneyToBet;
-    CheckBox draw;
-    CheckBox win2;
+    RadioButton draw;
+    RadioButton win2;
     Button betB;
     float money = 500;
     private AppDatabase db;
@@ -39,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         moneyToSpend= findViewById(R.id.moneyToSpendTV);
-        moneyToBet= findViewById(R.id.moneyToBet);
+        moneyToBet= findViewById(R.id.moneyToBetET);
         betB= findViewById(R.id.betB);
-        win1= findViewById(R.id.winFirstTeamCB);
-        draw= findViewById(R.id.drawCB);
-        win2= findViewById(R.id.winSecondTeamCB);
+        win1= (RadioButton)findViewById(R.id.winFirstTeamCB);
+        draw= (RadioButton)findViewById(R.id.drawCB);
+        win2= (RadioButton)findViewById(R.id.winSecondTeamCB);
 
         team.add(new Team(1,"Legia Warszawa",37, 21,6,10));
         team.add(new Team(2,"Lech Poznan",37, 18,7,12));
@@ -62,45 +63,13 @@ public class MainActivity extends AppCompatActivity {
         team.add(new Team(15,"Korona Kielce",37, 9,8,20));
         team.add(new Team(16,"LKS Lodz",37, 6,6,25));
         moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",money));
-        //money();
 
 
         db = AppDatabase.getInstance(getApplicationContext());
     }
 
-    public void onCheckboxClicked(View view) {
-        // Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
 
-        // Check which checkbox was clicked
-        switch(view.getId()) {
-            case R.id.winFirstTeamCB:
-                if (checked){
 
-                }
-
-            else
-
-                break;
-            case R.id.drawCB:
-                if (checked){
-
-                }
-
-            else
-
-                break;
-            case R.id.winSecondTeamCB:
-                if (checked){
-
-                }
-
-            else
-
-                break;
-            // TODO: Veggie sandwich
-        }
-    }
     public void setMoneyToBet(View view){
         float result;
         String betStr=moneyToBet.getText().toString();
@@ -108,33 +77,56 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         float bet= Float.valueOf(betStr.replace(",","."));
-        if(win1.isChecked()){
-            result= money+2*bet;
-            moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
-            money=result;
-        }
-        else if(win2.isChecked()){
-            result= money-bet;
-            moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
-            money=result;
-        }
-        else if(draw.isChecked()){
-            result= money-bet;
-            moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
-            money=result;
-        }
-        else{
+        if(money<=0){
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.setMessage("Musisz obstawić jakiś mecz");
+            alert.setMessage("Nie masz wystarczająco pieniędzy");
             alert.setTitle("UWAGA!");
             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-
                 }
             });
-
             alert.show();
         }
+        else if(bet>money){
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage("Musisz obstawić za mniej pieniędzy");
+            alert.setTitle("UWAGA!");
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                }
+            });
+            alert.show();
+        }
+        else{
+            if(win1.isChecked()){
+                result= money+2*bet;
+                moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
+                money=result;
+            }
+            else if(win2.isChecked()){
+                result= money-bet;
+                moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
+                money=result;
+            }
+            else if(draw.isChecked()){
+                result= money-bet;
+                moneyToSpend.setText(String.format(new Locale("PL"),"%.2f $",result));
+                money=result;
+            }
+            else{
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setMessage("Musisz obstawić jakiś mecz");
+                alert.setTitle("UWAGA!");
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                });
+                alert.show();
+            }
+        }
+
+
+
     }
 
 
