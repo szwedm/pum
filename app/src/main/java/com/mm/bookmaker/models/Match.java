@@ -112,6 +112,8 @@ public class Match {
         this.team2Goals = team2Goals;
     }
 
+
+
     public String getScore() {
         return team1Goals + " - " + team2Goals;
     }

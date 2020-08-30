@@ -31,24 +31,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
-    <EditText
-        android:id="@+id/moneyToBetET"
-        android:layout_width="91dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="524dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <Button
         android:id="@+id/betB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="164dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="112dp"
         android:onClick="setMoneyToBet"
         android:text="Obstaw"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,8 +46,8 @@
         android:id="@+id/rdGroup"
         android:layout_width="179dp"
         android:layout_height="49dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginBottom="520dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginBottom="460dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -92,5 +80,25 @@
             tools:layout_editor_absoluteX="203dp"
             tools:layout_editor_absoluteY="162dp" />
     </RadioGroup>
+
+    <EditText
+        android:id="@+id/moneyToBetET"
+        android:layout_width="91dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="464dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/teamsThatPlayTV"
+        android:layout_width="299dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
