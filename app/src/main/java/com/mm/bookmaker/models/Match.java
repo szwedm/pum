@@ -95,17 +95,4 @@ public class Match implements Serializable {
     public void setAwayTeamGoals(int awayTeamGoals) {
         this.awayTeamGoals = awayTeamGoals;
     }
-
-    @Override
-    public String toString() {
-        return "Match{" +
-                "id=" + id +
-                ", date='" + date + '\'' +
-                ", statusShort='" + statusShort + '\'' +
-                ", homeTeamName='" + homeTeamName + '\'' +
-                ", awayTeamName='" + awayTeamName + '\'' +
-                ", homeTeamGoals=" + homeTeamGoals +
-                ", awayTeamGoals=" + awayTeamGoals +
-                '}';
-    }
 }
