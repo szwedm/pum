@@ -3,6 +3,7 @@ package com.mm.bookmaker.database;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -29,7 +30,7 @@ public interface PlayerDao {
     @Query("SELECT * FROM player ORDER BY goals DESC")
     List<Player> getAllSortByGoals();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPlayer(Player player);
 
     @Update
