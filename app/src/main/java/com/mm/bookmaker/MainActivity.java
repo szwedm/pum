@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private TeamService teamService;
     private PlayerService playerService;
     private MatchService matchService;
-    private TextView textView1;
     private List<Team> teams = new ArrayList<>();
     private List<Match> matches = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
@@ -48,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = AppDatabase.getInstance(getApplicationContext());
-
-        textView1 = (TextView) findViewById(R.id.textView1);
 
         teamService = ApiServiceGenerator.createService(TeamService.class);
         matchService = ApiServiceGenerator.createService(MatchService.class);
