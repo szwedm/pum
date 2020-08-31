@@ -2,14 +2,18 @@ package com.mm.bookmaker.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
-public class Player {
+import java.io.Serializable;
 
-    @PrimaryKey(autoGenerate = true)
-    private Long id;
+@Entity(tableName = "player")
+public class Player implements Serializable {
+
+    @PrimaryKey
+    private Integer id;
+
+    @ColumnInfo(name = "full_name")
+    private String fullName;
 
     @ColumnInfo(name = "first_name")
     private String firstName;
@@ -20,31 +24,40 @@ public class Player {
     @ColumnInfo(name = "position")
     private String position;
 
+    @ColumnInfo(name = "team_id")
+    private Integer teamId;
+
     @ColumnInfo(name = "team_name")
     private String teamName;
 
     @ColumnInfo(name = "goals")
     private int goals;
 
-    public Player() {
-    }
-
-    @Ignore
-    public Player(Long id, String firstName, String lastName, String position, String teamName, int goals) {
+    public Player(Integer id, String fullName, String firstName, String lastName, String position, Integer teamId, String teamName, int goals) {
         this.id = id;
+        this.fullName = fullName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
+        this.teamId = teamId;
         this.teamName = teamName;
         this.goals = goals;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getFirstName() {
@@ -69,6 +82,14 @@ public class Player {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public Integer getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Integer teamId) {
+        this.teamId = teamId;
     }
 
     public String getTeamName() {

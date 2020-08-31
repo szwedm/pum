@@ -9,12 +9,26 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mm.bookmaker.database.AppDatabase;
+import com.mm.bookmaker.models.Player;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class TopScorersActivity extends AppCompatActivity {
+
+    private AppDatabase db;
+    private List<Player> players = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topscorers);
 
+        db = AppDatabase.getInstance(getApplicationContext());
+
+        db.playerDao().getAllSortByGoals();
+        ArrayList<Player> players = new ArrayList<>(db.playerDao().getAllSortByGoals());
 
     }
     @Override

@@ -2,65 +2,49 @@ package com.mm.bookmaker.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
-@Entity
-public class Match {
+@Entity(tableName = "match")
+public class Match implements Serializable {
 
-    @PrimaryKey(autoGenerate = true)
-    private Long id;
+    @PrimaryKey
+    private Integer id;
 
     @ColumnInfo(name = "date")
     private String date;
 
-    @ColumnInfo(name = "team1")
-    private String team1;
+    @ColumnInfo(name = "statusShort")
+    private String statusShort;
 
-    @ColumnInfo(name = "team2")
-    private String team2;
+    @ColumnInfo(name = "homeTeam")
+    private String homeTeamName;
 
-    @ColumnInfo(name = "status")
-    private String status; // "coming" or "finished"
+    @ColumnInfo(name = "awayTeam")
+    private String awayTeamName;
 
-    @ColumnInfo(name = "team1_goals")
-    private int team1Goals;
+    @ColumnInfo(name = "homeTeam_goals")
+    private int homeTeamGoals;
 
-    @ColumnInfo(name = "team2_goals")
-    private int team2Goals;
+    @ColumnInfo(name = "awayTeam_goals")
+    private int awayTeamGoals;
 
-    public Match() {
-    }
-
-    @Ignore
-    public Match(Long id, String date, String team1, String team2) {
+    public Match(Integer id, String date, String statusShort, String homeTeamName, String awayTeamName, int homeTeamGoals, int awayTeamGoals) {
         this.id = id;
         this.date = date;
-        this.team1 = team1;
-        this.team2 = team2;
-        this.status = "coming";
-        this.team1Goals = 0;
-        this.team2Goals = 0;
+        this.statusShort = statusShort;
+        this.homeTeamName = homeTeamName;
+        this.awayTeamName = awayTeamName;
+        this.homeTeamGoals = homeTeamGoals;
+        this.awayTeamGoals = awayTeamGoals;
     }
 
-    @Ignore
-    public Match(Long id, String date, String team1, String team2, int team1Goals, int team2Goals) {
-        this.id = id;
-        this.date = date;
-        this.team1 = team1;
-        this.team2 = team2;
-        this.status = "finished";
-        this.team1Goals = team1Goals;
-        this.team2Goals = team2Goals;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,49 +56,45 @@ public class Match {
         this.date = date;
     }
 
-    public String getTeam1() {
-        return team1;
+    public String getStatusShort() {
+        return statusShort;
     }
 
-    public void setTeam1(String team1) {
-        this.team1 = team1;
+    public void setStatusShort(String statusShort) {
+        this.statusShort = statusShort;
     }
 
-    public String getTeam2() {
-        return team2;
+    public String getHomeTeamName() {
+        return homeTeamName;
     }
 
-    public void setTeam2(String team2) {
-        this.team2 = team2;
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName;
     }
 
-    public String getStatus() {
-        return status;
+    public String getAwayTeamName() {
+        return awayTeamName;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAwayTeamName(String awayTeamName) {
+        this.awayTeamName = awayTeamName;
     }
 
-    public int getTeam1Goals() {
-        return team1Goals;
+    public int getHomeTeamGoals() {
+        return homeTeamGoals;
     }
 
-    public void setTeam1Goals(int team1Goals) {
-        this.team1Goals = team1Goals;
+    public void setHomeTeamGoals(int homeTeamGoals) {
+        this.homeTeamGoals = homeTeamGoals;
     }
 
-    public int getTeam2Goals() {
-        return team2Goals;
-    }
-
-    public void setTeam2Goals(int team2Goals) {
-        this.team2Goals = team2Goals;
+    public int getAwayTeamGoals() {
+        return awayTeamGoals;
     }
 
 
+    public void setAwayTeamGoals(int awayTeamGoals) {
+        this.awayTeamGoals = awayTeamGoals;
 
-    public String getScore() {
-        return team1Goals + " - " + team2Goals;
     }
 }

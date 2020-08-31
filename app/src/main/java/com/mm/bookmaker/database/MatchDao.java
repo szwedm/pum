@@ -17,20 +17,20 @@ public interface MatchDao {
     List<Match> getAll();
 
     @Query("SELECT * FROM `match` WHERE id IN (:matchIds)")
-    List<Match> loadAllByIds(Long[] matchIds);
+    List<Match> loadAllByIds(Integer[] matchIds);
 
     @Query("SELECT * FROM `match` WHERE date LIKE :matchDate")
     Match findByDate(String matchDate);
 
     @Query("SELECT * FROM `match` WHERE id LIKE :id")
-    Match findById(Long id);
+    Match findById(Integer id);
 
     @Insert
-    public void insertMatch(Match... matches);
+    void insertMatch(Match match);
 
     @Update
-    public void updateMatch(Match... matches);
+    void updateMatch(Match match);
 
     @Delete
-    public void deleteMatch(Match... matches);
+    void deleteMatch(Match match);
 }
