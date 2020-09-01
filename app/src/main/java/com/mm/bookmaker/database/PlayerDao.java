@@ -3,6 +3,7 @@ package com.mm.bookmaker.database;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -26,7 +27,7 @@ public interface PlayerDao {
     @Query("SELECT * FROM player WHERE id LIKE :id")
     Player findById(Integer id);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPlayer(Player player);
 
     @Update
