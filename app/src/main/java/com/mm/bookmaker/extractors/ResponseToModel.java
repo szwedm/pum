@@ -32,6 +32,7 @@ public class ResponseToModel {
             if (fixture.getStatusShort().equals("FT")) {
                 matches.add(new Match(fixture.getFixtureId(),
                         fixture.getEventDate(),
+                        fixture.getEventTimeStamp(),
                         fixture.getStatusShort(),
                         fixture.getHomeTeam().getTeamName(),
                         fixture.getAwayTeam().getTeamName(),
@@ -40,6 +41,7 @@ public class ResponseToModel {
             } else {
                 matches.add(new Match(fixture.getFixtureId(),
                         fixture.getEventDate(),
+                        fixture.getEventTimeStamp(),
                         fixture.getStatusShort(),
                         fixture.getHomeTeam().getTeamName(),
                         fixture.getAwayTeam().getTeamName(),

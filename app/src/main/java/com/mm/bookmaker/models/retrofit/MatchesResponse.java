@@ -55,6 +55,10 @@ public class MatchesResponse {
             @Expose
             private String eventDate;
 
+            @SerializedName("event_timestamp")
+            @Expose
+            private Long eventTimeStamp;
+
             @SerializedName("statusShort")
             @Expose
             private String statusShort;
@@ -89,6 +93,14 @@ public class MatchesResponse {
 
             public void setEventDate(String eventDate) {
                 this.eventDate = eventDate;
+            }
+
+            public Long getEventTimeStamp() {
+                return eventTimeStamp;
+            }
+
+            public void setEventTimeStamp(Long eventTimeStamp) {
+                this.eventTimeStamp = eventTimeStamp;
             }
 
             public String getStatusShort() {

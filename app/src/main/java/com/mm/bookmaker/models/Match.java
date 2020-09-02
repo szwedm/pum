@@ -15,6 +15,9 @@ public class Match implements Serializable {
     @ColumnInfo(name = "date")
     private String date;
 
+    @ColumnInfo(name = "event_timestamp")
+    private Long eventTimeStamp;
+
     @ColumnInfo(name = "statusShort")
     private String statusShort;
 
@@ -30,9 +33,10 @@ public class Match implements Serializable {
     @ColumnInfo(name = "awayTeam_goals")
     private int awayTeamGoals;
 
-    public Match(Integer id, String date, String statusShort, String homeTeamName, String awayTeamName, int homeTeamGoals, int awayTeamGoals) {
+    public Match(Integer id, String date, Long eventTimeStamp, String statusShort, String homeTeamName, String awayTeamName, int homeTeamGoals, int awayTeamGoals) {
         this.id = id;
         this.date = date;
+        this.eventTimeStamp = eventTimeStamp;
         this.statusShort = statusShort;
         this.homeTeamName = homeTeamName;
         this.awayTeamName = awayTeamName;
@@ -54,6 +58,14 @@ public class Match implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Long getEventTimeStamp() {
+        return eventTimeStamp;
+    }
+
+    public void setEventTimeStamp(Long eventTimeStamp) {
+        this.eventTimeStamp = eventTimeStamp;
     }
 
     public String getStatusShort() {
