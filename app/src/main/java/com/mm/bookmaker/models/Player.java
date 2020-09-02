@@ -33,6 +33,7 @@ public class Player implements Serializable {
     @ColumnInfo(name = "goals")
     private int goals;
 
+
     public Player(Integer id, String fullName, String firstName, String lastName, String position, Integer teamId, String teamName, int goals) {
         this.id = id;
         this.fullName = fullName;
@@ -106,5 +107,12 @@ public class Player implements Serializable {
 
     public void setGoals(int goals) {
         this.goals = goals;
+    }
+
+
+    @Override
+    public String toString() {
+        return id +" " +fullName +" " +teamName+" " +goals;
+
     }
 }
