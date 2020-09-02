@@ -2,7 +2,6 @@ package com.mm.bookmaker.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -24,9 +23,6 @@ public class Bet implements Serializable {
 
     @ColumnInfo(name = "status")
     private String status;
-
-    @Ignore
-    private Match match;
 
     public Bet(Integer match_id, Integer value, String type, String status) {
         this.match_id = match_id;
@@ -73,13 +69,5 @@ public class Bet implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Match getMatch() {
-        return match;
-    }
-
-    public void setMatch(Match match) {
-        this.match = match;
     }
 }
