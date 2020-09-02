@@ -28,12 +28,11 @@ public class Bet implements Serializable {
     @Ignore
     private Match match;
 
-    public Bet(Integer match_id, Integer value, String type, String status, Match match) {
+    public Bet(Integer match_id, Integer value, String type, String status) {
         this.match_id = match_id;
         this.value = value;
         this.type = type;
         this.status = status;
-        this.match = match;
     }
 
     public Integer getId() {
