@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Team> teams = new ArrayList<>();
     private List<Match> matches = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
+    private ListView mainListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         teamService = ApiServiceGenerator.createService(TeamService.class);
         matchService = ApiServiceGenerator.createService(MatchService.class);
         playerService = ApiServiceGenerator.createService(PlayerService.class);
+
+        mainListView = (ListView) findViewById(R.id.main_listView1);
     }
 
     @Override
