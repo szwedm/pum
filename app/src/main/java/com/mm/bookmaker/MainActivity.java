@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mm.bookmaker.adapters.MatchArrayAdapter;
 import com.mm.bookmaker.api.ApiServiceGenerator;
 import com.mm.bookmaker.database.AppDatabase;
 import com.mm.bookmaker.extractors.ResponseToModel;
@@ -37,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private TeamService teamService;
     private PlayerService playerService;
     private MatchService matchService;
-    private List<Team> teams = new ArrayList<>();
-    private List<Match> matches = new ArrayList<>();
-    private List<Player> players = new ArrayList<>();
     private ListView mainListView;
 
     @Override
@@ -54,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
         playerService = ApiServiceGenerator.createService(PlayerService.class);
 
         mainListView = (ListView) findViewById(R.id.main_listView1);
+
+        ArrayList<Match> matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
+
+        if (!(matches.isEmpty())) {
+            MatchArrayAdapter adapter = new MatchArrayAdapter(getApplicationContext(), matches);
+            mainListView.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -87,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         callTopScorers.enqueue(new Callback<TopScorersResponse>() {
             @Override
             public void onResponse(Call<TopScorersResponse> call, Response<TopScorersResponse> response) {
+                List<Player> players = new ArrayList<>();
                 TopScorersResponse topScorersResponse = response.body();
                 ResponseToModel.extractTopScorersFromTopScorersResponse(topScorersResponse, players);
                 for (Player player : players) {
@@ -106,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         callMatches.enqueue(new Callback<MatchesResponse>() {
             @Override
             public void onResponse(Call<MatchesResponse> call, Response<MatchesResponse> response) {
+                List<Match> matches = new ArrayList<>();
                 MatchesResponse matchesResponse = response.body();
                 ResponseToModel.extractMatchesFromMatchesResponse(matchesResponse, matches);
                 for (Match match : matches) {
@@ -125,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         callStandings.enqueue(new Callback<StandingsResponse>() {
             @Override
             public void onResponse(Call<StandingsResponse> call, Response<StandingsResponse> response) {
+                List<Team> teams = new ArrayList<>();
                 StandingsResponse standingsResponse = response.body();
                 ResponseToModel.extractTeamsFromStandingsResponse(standingsResponse, teams);
                 for (Team team : teams) {

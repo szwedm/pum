@@ -20,6 +20,9 @@ public interface MatchDao {
     @Query("SELECT * FROM `match` WHERE id IN (:matchIds)")
     List<Match> loadAllByIds(Integer[] matchIds);
 
+    @Query("SELECT * FROM `match` WHERE event_timestamp >= :timeStamp ORDER BY event_timestamp LIMIT 8")
+    List<Match> getIncoming8(Long timeStamp);
+
     @Query("SELECT * FROM `match` WHERE date LIKE :matchDate")
     Match findByDate(String matchDate);
 
