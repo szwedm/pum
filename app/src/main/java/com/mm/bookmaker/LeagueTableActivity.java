@@ -43,7 +43,7 @@ public class LeagueTableActivity extends AppCompatActivity {
         tv1.setTextColor(Color.BLACK);
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(this);
-        tv2.setText("W          ");
+        tv2.setText("  W          ");
         tv2.setTextColor(Color.BLACK);
         tbrow0.addView(tv2);
         TextView tv3 = new TextView(this);
@@ -74,7 +74,7 @@ public class LeagueTableActivity extends AppCompatActivity {
 
             TextView t3v= new TextView(this);
             String wins= String.valueOf(teams.get(i).getWins());
-            t3v.setText(wins);
+            t3v.setText("  "+wins);
             tbrow.addView(t3v);
 
             TextView t4v = new TextView(this);

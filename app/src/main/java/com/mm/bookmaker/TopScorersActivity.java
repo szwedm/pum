@@ -35,16 +35,16 @@ public class TopScorersActivity extends AppCompatActivity {
 
         TableRow tbrow0 = new TableRow(this);
         TextView tv0 = new TextView(this);
-        tv0.setText(" # ");
+        tv0.setText(" #     ");
         tv0.setTextColor(Color.BLACK);
 
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
-        tv1.setText("Imię i Nazwisko ");
+        tv1.setText("Imię i Nazwisko    ");
         tv1.setTextColor(Color.BLACK);
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(this);
-        tv2.setText("Klub");
+        tv2.setText("  Klub");
         tv2.setTextColor(Color.BLACK);
         tbrow0.addView(tv2);
         TextView tv3 = new TextView(this);
@@ -63,7 +63,7 @@ public class TopScorersActivity extends AppCompatActivity {
             t2v.setText(players.get(i).getFullName());
             tbrow.addView(t2v);
             TextView t3v= new TextView(this);
-            t3v.setText(players.get(i).getTeamName());
+            t3v.setText("  "+players.get(i).getTeamName());
             tbrow.addView(t3v);
             TextView t4v = new TextView(this);
             String goals= String.valueOf(players.get(i).getGoals());
