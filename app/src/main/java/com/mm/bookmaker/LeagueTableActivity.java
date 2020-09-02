@@ -62,32 +62,47 @@ public class LeagueTableActivity extends AppCompatActivity {
 
         for(int i =0;i<teams.size();i++){
             TableRow tbrow = new TableRow(this);
-
             TextView t1v = new TextView(this);
+            TextView t2v = new TextView(this);
+            TextView t3v = new TextView(this);
+            TextView t4v = new TextView(this);
+            TextView t5v = new TextView(this);
+            TextView t6v = new TextView(this);
+            if(i==0){
+                t1v.setTextColor(Color.BLUE);
+                t2v.setTextColor(Color.BLUE);
+                t3v.setTextColor(Color.BLUE);
+                t4v.setTextColor(Color.BLUE);
+                t5v.setTextColor(Color.BLUE);
+                t6v.setTextColor(Color.BLUE);
+            }
+            if(i==15){
+                t1v.setTextColor(Color.RED);
+                t2v.setTextColor(Color.RED);
+                t3v.setTextColor(Color.RED);
+                t4v.setTextColor(Color.RED);
+                t5v.setTextColor(Color.RED);
+                t6v.setTextColor(Color.RED);
+            }
             String number= String.valueOf(i+1);
             t1v.setText(number);
             tbrow.addView(t1v);
 
-            TextView t2v = new TextView(this);
             t2v.setText(teams.get(i).getName());
             tbrow.addView(t2v);
 
-            TextView t3v= new TextView(this);
             String wins= String.valueOf(teams.get(i).getWins());
             t3v.setText("  "+wins);
             tbrow.addView(t3v);
 
-            TextView t4v = new TextView(this);
             String draws= String.valueOf(teams.get(i).getDraws());
             t4v.setText(draws);
             tbrow.addView(t4v);
 
-            TextView t5v = new TextView(this);
             String loses= String.valueOf(teams.get(i).getLoses());
             t5v.setText(loses);
             tbrow.addView(t5v);
 
-            TextView t6v = new TextView(this);
             String points= String.valueOf(teams.get(i).getPoints());
             t6v.setText(points);
             tbrow.addView(t6v);
