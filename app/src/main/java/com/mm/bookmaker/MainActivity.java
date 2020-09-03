@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppDatabase db;
 
+    private int money;
     private TeamService teamService;
     private PlayerService playerService;
     private MatchService matchService;
@@ -59,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
             MatchArrayAdapter adapter = new MatchArrayAdapter(getApplicationContext(), matches);
             mainListView.setAdapter(adapter);
         }
+
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
     @Override
