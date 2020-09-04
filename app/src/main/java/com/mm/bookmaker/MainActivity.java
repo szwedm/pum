@@ -1,6 +1,7 @@
 package com.mm.bookmaker;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -8,8 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mm.bookmaker.adapters.MatchArrayAdapter;
@@ -36,12 +39,15 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private AppDatabase db;
+    private SharedPreferences sharedPref;
 
     private int money;
     private TeamService teamService;
     private PlayerService playerService;
     private MatchService matchService;
+    private ArrayList<Match> matches;
     private ListView mainListView;
+    private TextView mainTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,23 +60,36 @@ public class MainActivity extends AppCompatActivity {
         matchService = ApiServiceGenerator.createService(MatchService.class);
         playerService = ApiServiceGenerator.createService(PlayerService.class);
 
-        mainListView = (ListView) findViewById(R.id.main_listView1);
+        mainListView = (ListView) findViewById(R.id.main_listView);
+        mainTextView = (TextView) findViewById(R.id.main_textView);
 
-        ArrayList<Match> matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
+        sharedPref = getPreferences(MODE_PRIVATE);
+        money = sharedPref.getInt("savedMoney", 1000);
 
-        if (!(matches.isEmpty())) {
-            MatchArrayAdapter adapter = new MatchArrayAdapter(getApplicationContext(), matches);
-            mainListView.setAdapter(adapter);
-        }
+        mainTextView.setText(money + " PLN");
+
+        setMatchesListView();
 
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), BetActivity.class);
+                intent.putExtra("money", money);
                 intent.putExtra("match", matches.get(position));
-                startActivity(intent);
+                startActivityForResult(intent, 200);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 200) {
+            if (resultCode == RESULT_OK) {
+                money -= data.getIntExtra("betValue", 0);
+                mainTextView.setText(money + " PLN");
+            }
+        }
     }
 
     @Override
@@ -95,8 +114,18 @@ public class MainActivity extends AppCompatActivity {
             saveTeamsFromAPI();
             saveTopScorersFromAPI();
             saveMatchesFromAPI();
+            setMatchesListView();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setMatchesListView() {
+        matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
+
+        if (!(matches.isEmpty())) {
+            MatchArrayAdapter adapter = new MatchArrayAdapter(getApplicationContext(), matches);
+            mainListView.setAdapter(adapter);
+        }
     }
 
     public void saveTopScorersFromAPI() {
@@ -162,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        sharedPref.edit().putInt("savedMoney", money).commit();
         db.close();
     }
 }

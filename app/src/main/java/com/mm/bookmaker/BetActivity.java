@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,7 @@ import com.mm.bookmaker.models.Match;
 public class BetActivity extends AppCompatActivity {
 
     private int value;
+    private int money;
     private String type;
     private AppDatabase db;
     private Bet bet;
@@ -40,6 +42,7 @@ public class BetActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         match = (Match) intent.getSerializableExtra("match");
+        money = intent.getIntExtra("money", 0);
 
         bet = db.betDao().findByMatchId(match.getId());
 
@@ -96,8 +99,15 @@ public class BetActivity extends AppCompatActivity {
 
     public void createBet(View view) {
         value = Integer.parseInt(editTextValue.getText().toString());
-        bet = new Bet(match.getId(), value, type, "P");
-        db.betDao().insertBet(bet);
-        finish();
+        if (value <= money && value > 0 && !(type.isEmpty())) {
+            bet = new Bet(match.getId(), value, type, "P");
+            db.betDao().insertBet(bet);
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("betValue", value);
+            setResult(RESULT_OK, resultIntent);
+            finish();
+        } else if (value == 0 || value > money || type.isEmpty()) {
+            Toast.makeText(BetActivity.this, "Wartosc zakladu musi byc wieksza od 0", Toast.LENGTH_LONG).show();
+        }
     }
 }
