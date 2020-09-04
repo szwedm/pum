@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppDatabase db;
     private SharedPreferences sharedPref;
-
+    private MatchArrayAdapter adapter;
     private int money;
     private TeamService teamService;
     private PlayerService playerService;
@@ -55,20 +55,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = AppDatabase.getInstance(getApplicationContext());
+        sharedPref = getPreferences(MODE_PRIVATE);
 
         teamService = ApiServiceGenerator.createService(TeamService.class);
         matchService = ApiServiceGenerator.createService(MatchService.class);
         playerService = ApiServiceGenerator.createService(PlayerService.class);
 
         mainListView = (ListView) findViewById(R.id.main_listView);
-        mainTextView = (TextView) findViewById(R.id.main_textView);
+        matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
+        adapter = new MatchArrayAdapter(getApplicationContext(), matches);
+        mainListView.setAdapter(adapter);
 
-        sharedPref = getPreferences(MODE_PRIVATE);
+        mainTextView = (TextView) findViewById(R.id.main_textView);
         money = sharedPref.getInt("savedMoney", 1000);
 
         mainTextView.setText(money + " PLN");
-
-        setMatchesListView();
 
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -114,18 +115,14 @@ public class MainActivity extends AppCompatActivity {
             saveTeamsFromAPI();
             saveTopScorersFromAPI();
             saveMatchesFromAPI();
-            setMatchesListView();
+            matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
+            if (!(matches.isEmpty())) {
+                adapter.clear();
+                adapter.addAll(matches);
+                adapter.notifyDataSetChanged();
+            }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void setMatchesListView() {
-        matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
-
-        if (!(matches.isEmpty())) {
-            MatchArrayAdapter adapter = new MatchArrayAdapter(getApplicationContext(), matches);
-            mainListView.setAdapter(adapter);
-        }
     }
 
     public void saveTopScorersFromAPI() {

@@ -58,6 +58,7 @@ public class BetActivity extends AppCompatActivity {
         textViewDate.setText(match.getDate());
         textViewHomeTeamName.setText(match.getHomeTeamName());
         textViewAwayTeamName.setText(match.getAwayTeamName());
+        type = "X"; //default bet
 
         if (bet != null) {
             switch(bet.getType()) {
@@ -98,16 +99,23 @@ public class BetActivity extends AppCompatActivity {
     }
 
     public void createBet(View view) {
-        value = Integer.parseInt(editTextValue.getText().toString());
-        if (value <= money && value > 0 && !(type.isEmpty())) {
-            bet = new Bet(match.getId(), value, type, "P");
-            db.betDao().insertBet(bet);
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("betValue", value);
-            setResult(RESULT_OK, resultIntent);
-            finish();
-        } else if (value == 0 || value > money || type.isEmpty()) {
-            Toast.makeText(BetActivity.this, "Wartosc zakladu musi byc wieksza od 0", Toast.LENGTH_LONG).show();
+        if (!(editTextValue.getText().toString().isEmpty())) {
+            value = Integer.parseInt(editTextValue.getText().toString());
+            if (value <= money && value > 0 && !(type.isEmpty())) {
+                bet = new Bet(match.getId(), value, type, "P");
+                db.betDao().insertBet(bet);
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("betValue", value);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            } else if (value == 0) {
+                Toast.makeText(BetActivity.this, "Wartosc zakladu musi byc wieksza od 0", Toast.LENGTH_LONG).show();
+            } else if (value > money) {
+                Toast.makeText(BetActivity.this, "Brak wystarczajacych funduszy", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(BetActivity.this, "Wartosc zakladu nie moze byc pusta", Toast.LENGTH_LONG).show();
         }
+
     }
 }
