@@ -66,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent(getApplicationContext(), BetActivity.class);
+                intent.putExtra("match", matches.get(position));
+                startActivity(intent);
             }
         });
     }

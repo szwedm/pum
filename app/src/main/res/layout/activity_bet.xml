@@ -99,6 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="onRadioButtonClick"
             android:text="1"
             android:textColor="@android:color/black" />
 
@@ -107,6 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="onRadioButtonClick"
             android:text="X"
             android:textColor="@android:color/black" />
 
@@ -115,6 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="onRadioButtonClick"
             android:text="2"
             android:textColor="@android:color/black" />
     </RadioGroup>
@@ -136,10 +139,11 @@
         app:layout_constraintTop_toBottomOf="@+id/bet_radioGroup" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bet_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:onClick="createBet"
         android:text="Obstaw"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
