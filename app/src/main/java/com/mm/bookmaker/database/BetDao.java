@@ -19,6 +19,9 @@ public interface BetDao {
     @Query("SELECT * FROM bet WHERE match_id == :matchId")
     Bet findByMatchId(Integer matchId);
 
+    @Query("SELECT * FROM bet WHERE status == :status")
+    List<Bet> getBetsByStatus(String status);
+
     @Insert
     void insertBet(Bet bet);
 

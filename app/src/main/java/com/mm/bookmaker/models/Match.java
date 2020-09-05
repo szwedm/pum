@@ -60,13 +60,9 @@ public class Match implements Serializable {
         this.date = date;
     }
 
-    public Long getEventTimeStamp() {
-        return eventTimeStamp;
-    }
+    public Long getEventTimeStamp() { return eventTimeStamp; }
 
-    public void setEventTimeStamp(Long eventTimeStamp) {
-        this.eventTimeStamp = eventTimeStamp;
-    }
+    public void setEventTimeStamp(Long eventTimeStamp) { this.eventTimeStamp = eventTimeStamp; }
 
     public String getStatusShort() {
         return statusShort;

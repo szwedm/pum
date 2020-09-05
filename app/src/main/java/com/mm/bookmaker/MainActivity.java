@@ -19,6 +19,7 @@ import com.mm.bookmaker.adapters.MatchArrayAdapter;
 import com.mm.bookmaker.api.ApiServiceGenerator;
 import com.mm.bookmaker.database.AppDatabase;
 import com.mm.bookmaker.extractors.ResponseToModel;
+import com.mm.bookmaker.models.Bet;
 import com.mm.bookmaker.models.Match;
 import com.mm.bookmaker.models.Player;
 import com.mm.bookmaker.models.Team;
@@ -38,14 +39,15 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    private int money;
     private AppDatabase db;
     private SharedPreferences sharedPref;
     private MatchArrayAdapter adapter;
-    private int money;
     private TeamService teamService;
     private PlayerService playerService;
     private MatchService matchService;
-    private ArrayList<Match> matches;
+    private List<Match> matches;
+    private List<Bet> bets;
     private ListView mainListView;
     private TextView mainTextView;
 
@@ -62,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
         playerService = ApiServiceGenerator.createService(PlayerService.class);
 
         mainListView = (ListView) findViewById(R.id.main_listView);
+
+        saveMatchesFromAPI();
+        saveTeamsFromAPI();
+        saveTopScorersFromAPI();
+        updateBets();
+
         matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
         adapter = new MatchArrayAdapter(getApplicationContext(), matches);
         mainListView.setAdapter(adapter);
@@ -80,17 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 200);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 200) {
-            if (resultCode == RESULT_OK) {
-                money -= data.getIntExtra("betValue", 0);
-                mainTextView.setText(money + " PLN");
-            }
-        }
     }
 
     @Override
@@ -121,8 +118,27 @@ public class MainActivity extends AppCompatActivity {
                 adapter.addAll(matches);
                 adapter.notifyDataSetChanged();
             }
+            updateBets();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 200) {
+            if (resultCode == RESULT_OK) {
+                money -= data.getIntExtra("betValue", 0);
+                mainTextView.setText(money + " PLN");
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sharedPref.edit().putInt("savedMoney", money).commit();
+        db.close();
     }
 
     public void saveTopScorersFromAPI() {
@@ -185,10 +201,27 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        sharedPref.edit().putInt("savedMoney", money).commit();
-        db.close();
+    private void updateBets() {
+        bets = new ArrayList<>(db.betDao().getBetsByStatus("P"));
+        for (Bet bet : bets) {
+            Match match = db.matchDao().findById(bet.getMatch_id());
+            if (match.getStatusShort().equals("FT")) {
+                String scoreSymbol;
+                int homeTeamGoals = match.getHomeTeamGoals();
+                int awayTeamGoals = match.getAwayTeamGoals();
+                if (homeTeamGoals > awayTeamGoals) scoreSymbol = "1";
+                else if (homeTeamGoals == awayTeamGoals) scoreSymbol = "X";
+                else scoreSymbol = "2";
+
+                if (bet.getType().equals(scoreSymbol)) {
+                    money += 2 * bet.getValue();
+                    bet.setStatus("W");
+                } else {
+                    bet.setStatus("L");
+                }
+                db.betDao().updateBet(bet);
+                mainTextView.setText(money + " PLN");
+            }
+        }
     }
 }

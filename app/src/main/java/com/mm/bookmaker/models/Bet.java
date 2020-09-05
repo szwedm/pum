@@ -55,9 +55,7 @@ public class Bet implements Serializable {
         this.value = value;
     }
 
-    public String getType() {
-        return type;
-    }
+    public String getType() { return type; }
 
     public void setType(String type) {
         this.type = type;
