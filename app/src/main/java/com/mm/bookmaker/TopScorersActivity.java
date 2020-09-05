@@ -37,7 +37,6 @@ public class TopScorersActivity extends AppCompatActivity {
         TextView tv0 = new TextView(this);
         tv0.setText(" #     ");
         tv0.setTextColor(Color.BLACK);
-
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
         tv1.setText("Imię i Nazwisko    ");

@@ -1,12 +1,15 @@
 package com.mm.bookmaker;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.CalendarView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,43 +18,90 @@ import com.mm.bookmaker.database.AppDatabase;
 import com.mm.bookmaker.models.Match;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity {
     private AppDatabase db;
     CalendarView calendarView;
-    private  static final String TAG = "CalendarActivity";
     TextView textView;
+
+    private  static final String TAG = "CalendarActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        textView = findViewById(R.id.testmatch);
+        TableLayout stk = (TableLayout) findViewById(R.id.calendar_table);
+        textView =findViewById(R.id.textView4);
+
+
+
         calendarView = findViewById(R.id.calendarView);
         db = AppDatabase.getInstance(getApplicationContext());
         db.matchDao().getAll();
 
+
+        TableRow tbrow0 = new TableRow(this);
+        TextView tv0 = new TextView(this);
+        tv0.setText("Druzyna #1         ");
+        tv0.setTextColor(Color.BLACK);
+        tbrow0.addView(tv0);
+        TextView tv1 = new TextView(this);
+        tv1.setText("Druzyna #2         ");
+        tv1.setTextColor(Color.BLACK);
+        tbrow0.addView(tv1);
+        TextView tv2 = new TextView(this);
+        tv2.setText("  Status");
+        tv2.setTextColor(Color.BLACK);
+        tbrow0.addView(tv2);
+        stk.addView(tbrow0);
+
+
         ArrayList<Match> match = new ArrayList<>(db.matchDao().getAll());
+
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
-                String date = year + "-" + month + "-"+ dayOfMonth ;
+            public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
+               // textView.setText(Long.toString(calendarView.getDate()));
+                String date = year + "-" + (month+1) + "-"+ dayOfMonth ;
                 Log.d(TAG, "onSelectedDayChange: yyyy-mm-dd:" + date);
+
+
+                /*
                 for (int i =0;i<match.size();i++){
 
-                    String shortDate = match.get(i).getDate();
-                    shortDate.substring(0,10);
+                    String longDate = match.get(i).getDate();
+                    String shortDate = longDate.substring(0, 10);
+                    if(shortDate.equals(date)){
 
-                    if(!date.equals(shortDate)) {
-                        textView.setText(String.format(new Locale("PL"), "BRAK MECZU w dniu %s a %s",date, shortDate));
+                        // Porownac timestamp z kalendarza z baza danych i potem wyswietlic
+
+
+
+                        // textView.setText(String.format(new Locale("PL"),"%s vs %s",match.get(i).getHomeTeamName(), match.get(i).getAwayTeamName()));
                     }
+                    if(!shortDate.equals(date)) {
+                        //textView.setText(String.format(new Locale("PL"),"%s",calendarView.getDate()));
+
+                        // textView.setText(String.format(new Locale("PL"),"%s vs %s",date, shortDate));
+                    }
+
                 }
 
+                */
             }
         });
 
 
+
+
+
+
     }
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
