@@ -18,7 +18,7 @@
             android:orientation="vertical" >
 
             <TableLayout
-                android:id="@+id/table_layout"
+                android:id="@+id/topScorers_table"
                 android:layout_margin="10dp"
 
                 android:layout_width="wrap_content"

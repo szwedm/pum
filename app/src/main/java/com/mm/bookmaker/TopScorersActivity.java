@@ -30,7 +30,7 @@ public class TopScorersActivity extends AppCompatActivity {
         //TableLayout tableLayout = findViewById(R.id.table_layout);
         db = AppDatabase.getInstance(getApplicationContext());
         db.playerDao().getAllSortByGoals();
-        TableLayout stk = (TableLayout) findViewById(R.id.table_layout);
+        TableLayout stk = (TableLayout) findViewById(R.id.topScorers_table);
         ArrayList<Player> players = new ArrayList<>(db.playerDao().getAllSortByGoals());
 
         TableRow tbrow0 = new TableRow(this);

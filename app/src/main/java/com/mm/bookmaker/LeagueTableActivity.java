@@ -29,7 +29,7 @@ public class LeagueTableActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(getApplicationContext());
         db.playerDao().getAllSortByGoals();
 
-        TableLayout stk = (TableLayout) findViewById(R.id.table_layout);
+        TableLayout stk = (TableLayout) findViewById(R.id.league_table);
         ArrayList<Team> teams = new ArrayList<>(db.teamDao().getAllTeamsByPoints());
 
         TableRow tbrow0 = new TableRow(this);
