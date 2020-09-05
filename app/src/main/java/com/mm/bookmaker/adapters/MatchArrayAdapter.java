@@ -35,10 +35,18 @@ public class MatchArrayAdapter extends ArrayAdapter<Match> {
         TextView homeTeamView = (TextView) matchListView.findViewById(R.id.listTextView2);
         TextView awayTeamView = (TextView) matchListView.findViewById(R.id.listTextView3);
 
-        dateView.setText(matches.get(position).getDate().substring(5, 10));
+        dateView.setText(formatDateAndTime(matches.get(position).getDate()));
         homeTeamView.setText(matches.get(position).getHomeTeamName());
         awayTeamView.setText(matches.get(position).getAwayTeamName());
 
         return matchListView;
+    }
+
+    private String formatDateAndTime(String matchDate) {
+        String[] matchDateSplit = matchDate.split("T");
+        String[] dateSplit = matchDateSplit[0].split("-");
+        String resultString =  dateSplit[2] + "." + dateSplit[1] +
+                "\n" + matchDateSplit[1].substring(0, 5);
+        return  resultString;
     }
 }

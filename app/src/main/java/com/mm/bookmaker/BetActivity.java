@@ -55,7 +55,7 @@ public class BetActivity extends AppCompatActivity {
         radioButton2 = (RadioButton) findViewById(R.id.bet_radioButton3);
         button = (Button) findViewById(R.id.bet_button);
 
-        textViewDate.setText(match.getDate());
+        textViewDate.setText(formatDateAndTime(match.getDate()));
         textViewHomeTeamName.setText(match.getHomeTeamName());
         textViewAwayTeamName.setText(match.getAwayTeamName());
         type = "X"; //default bet
@@ -116,6 +116,13 @@ public class BetActivity extends AppCompatActivity {
         } else {
             Toast.makeText(BetActivity.this, "Wartosc zakladu nie moze byc pusta", Toast.LENGTH_LONG).show();
         }
+    }
 
+    private String formatDateAndTime(String matchDate) {
+        String[] matchDateSplit = matchDate.split("T");
+        String[] dateSplit = matchDateSplit[0].split("-");
+        String resultString =  dateSplit[2] + "." + dateSplit[1] + "." + dateSplit[0] +
+                " " + matchDateSplit[1].substring(0, 5);
+        return  resultString;
     }
 }
