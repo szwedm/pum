@@ -68,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
         mainListView = (ListView) findViewById(R.id.main_listView);
 
-        saveMatchesFromAPI();
-        saveTeamsFromAPI();
-        saveTopScorersFromAPI();
-        updateBets();
+        if (db.matchDao().getIncoming8(System.currentTimeMillis()/1000).isEmpty()) {
+            matches = new ArrayList<>();
+        } else {
+            matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
+        }
 
-        matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
         adapter = new MatchArrayAdapter(getApplicationContext(), matches);
         mainListView.setAdapter(adapter);
 
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        sharedPref.edit().putInt("savedMoney", money).commit();
+        sharedPref.edit().putInt("savedMoney", money).apply();
         db.close();
     }
 
