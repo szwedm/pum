@@ -1,12 +1,8 @@
 package com.mm.bookmaker;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -87,27 +83,5 @@ public class TopScorersActivity extends AppCompatActivity {
             tbrow.addView(t4v);
             stk.addView(tbrow);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.leagueTable_item) {
-            Intent intent = new Intent(this, LeagueTableActivity.class);
-            startActivityForResult(intent,1);
-
-        }
-
-        if (item.getItemId() == R.id.topScorers_item) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivityForResult(intent,1);
-
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

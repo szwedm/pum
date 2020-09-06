@@ -1,7 +1,6 @@
 package com.mm.bookmaker;
 
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,14 +8,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mm.bookmaker.adapters.MatchArrayAdapter;
@@ -107,10 +104,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.leagueTable_item) {
             Intent intent = new Intent(this, LeagueTableActivity.class);
-            startActivityForResult(intent,1);
+            startActivity(intent);
         }  else if (item.getItemId() == R.id.topScorers_item) {
             Intent intent = new Intent(this, TopScorersActivity.class);
-            startActivityForResult(intent,1);
+            startActivity(intent);
         } else if (item.getItemId() == R.id.refreshData_item) {
             saveTeamsFromAPI();
             saveTopScorersFromAPI();
