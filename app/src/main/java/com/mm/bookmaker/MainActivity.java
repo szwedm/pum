@@ -177,10 +177,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.leagueTable_item) {
             Intent intent = new Intent(this, LeagueTableActivity.class);
             startActivityForResult(intent,1);
-        } else if (item.getItemId() == R.id.calendar_item) {
-            Intent intent = new Intent(this, CalendarActivity.class);
-            startActivityForResult(intent,1);
-        } else if (item.getItemId() == R.id.topScorers_item) {
+        }  else if (item.getItemId() == R.id.topScorers_item) {
             Intent intent = new Intent(this, TopScorersActivity.class);
             startActivityForResult(intent,1);
         } else if (item.getItemId() == R.id.refreshData_item) {
