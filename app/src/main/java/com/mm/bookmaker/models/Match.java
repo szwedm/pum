@@ -100,7 +100,9 @@ public class Match implements Serializable {
         return awayTeamGoals;
     }
 
+
     public void setAwayTeamGoals(int awayTeamGoals) {
         this.awayTeamGoals = awayTeamGoals;
+
     }
 }

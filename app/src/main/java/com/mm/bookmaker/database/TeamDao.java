@@ -25,6 +25,8 @@ public interface TeamDao {
 
     @Query("SELECT * FROM team WHERE id LIKE :id")
     Team findById(Integer id);
+    @Query("SELECT * FROM team ORDER BY points DESC ")
+    List<Team>getAllTeamsByPoints();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertTeam(Team team);

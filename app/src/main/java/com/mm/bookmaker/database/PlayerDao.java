@@ -27,6 +27,9 @@ public interface PlayerDao {
     @Query("SELECT * FROM player WHERE id LIKE :id")
     Player findById(Integer id);
 
+    @Query("SELECT * FROM player ORDER BY goals DESC")
+    List<Player> getAllSortByGoals();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPlayer(Player player);
 

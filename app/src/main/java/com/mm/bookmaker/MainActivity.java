@@ -1,5 +1,7 @@
 package com.mm.bookmaker;
 
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,12 +9,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mm.bookmaker.adapters.MatchArrayAdapter;
@@ -37,6 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private int money;
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Bet> bets;
     private ListView mainListView;
     private TextView mainTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,22 +108,14 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.leagueTable_item) {
             Intent intent = new Intent(this, LeagueTableActivity.class);
             startActivityForResult(intent,1);
-        } else if (item.getItemId() == R.id.calendar_item) {
-            Intent intent = new Intent(this, CalendarActivity.class);
-            startActivityForResult(intent,1);
-        } else if (item.getItemId() == R.id.topScorers_item) {
+        }  else if (item.getItemId() == R.id.topScorers_item) {
             Intent intent = new Intent(this, TopScorersActivity.class);
             startActivityForResult(intent,1);
         } else if (item.getItemId() == R.id.refreshData_item) {
             saveTeamsFromAPI();
             saveTopScorersFromAPI();
             saveMatchesFromAPI();
-            matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
-            if (!(matches.isEmpty())) {
-                adapter.clear();
-                adapter.addAll(matches);
-                adapter.notifyDataSetChanged();
-            }
+            updateMatchAdapter();
             updateBets();
         } else if (item.getItemId() == R.id.bets_item) {
             Intent intent = new Intent(this, BetsActivity.class);
@@ -202,6 +200,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Error: Standings download failed!", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void updateMatchAdapter() {
+        matches = new ArrayList<>(db.matchDao().getIncoming8(System.currentTimeMillis()/1000));
+        if (!(matches.isEmpty())) {
+            adapter.clear();
+            adapter.addAll(matches);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void updateBets() {
