@@ -119,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
             updateBets();
+        } else if (item.getItemId() == R.id.bets_item) {
+            Intent intent = new Intent(this, BetsActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

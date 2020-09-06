@@ -16,6 +16,9 @@ public interface BetDao {
     @Query("SELECT * FROM bet")
     List<Bet> getAll();
 
+    @Query("SELECT * FROM bet ORDER BY id")
+    List<Bet> getAllSortById();
+
     @Query("SELECT * FROM bet WHERE match_id == :matchId")
     Bet findByMatchId(Integer matchId);
 

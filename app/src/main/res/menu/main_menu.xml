@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/bets_item"
+        android:title="Bets"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_bets"/>
+    <item
         android:id="@+id/topScorers_item"
         android:title="Top Scorers"
         app:showAsAction="always"

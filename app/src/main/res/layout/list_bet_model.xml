@@ -3,17 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".BetsActivity">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/betsTextView1"
+        android:id="@+id/betListTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="start"
-        android:text="#"
         android:textAlignment="viewStart"
         android:textColor="@android:color/black"
         android:textSize="14sp"
@@ -21,85 +18,79 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/betsTextView2"
-        android:layout_width="75dp"
+        android:id="@+id/betListTextView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Data i godz."
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/betsTextView1"
+        app:layout_constraintStart_toEndOf="@+id/betListTextView1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/betsTextView3"
+        android:id="@+id/betListTextView3"
         android:layout_width="131dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Druzyny"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/betsTextView2"
+        app:layout_constraintStart_toEndOf="@+id/betListTextView2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/betsTextView4"
+        android:id="@+id/betListTextView4"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/betListTextView2"
+        app:layout_constraintTop_toBottomOf="@+id/betListTextView3" />
+
+    <TextView
+        android:id="@+id/betListTextView5"
         android:layout_width="32dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="PLN"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/betsTextView3"
+        app:layout_constraintStart_toEndOf="@+id/betListTextView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/betsTextView5"
+        android:id="@+id/betListTextView6"
         android:layout_width="23dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Typ"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/betsTextView4"
+        app:layout_constraintStart_toEndOf="@+id/betListTextView5"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/betsTextView6"
+        android:id="@+id/betListTextView7"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Status"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/betsTextView5"
+        app:layout_constraintStart_toEndOf="@+id/betListTextView6"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/betsListView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/betsTextView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
