@@ -133,9 +133,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        sharedPref.edit().putInt("savedMoney", money).commit();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sharedPref.edit().putInt("savedMoney", money).commit();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        sharedPref.edit().putInt("savedMoney", money).apply();
+        sharedPref.edit().putInt("savedMoney", money).commit();
         db.close();
     }
 
