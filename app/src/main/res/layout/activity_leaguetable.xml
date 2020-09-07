@@ -4,22 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"    >
-
-
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:layout_weight="1">
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="horizontal"
+            android:layout_weight="1">
 
             <TableLayout
                 android:id="@+id/league_table"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-
                 android:layout_marginBottom="10dp">
-
             </TableLayout>
-
-
+        </HorizontalScrollView>
+    </ScrollView>
 </LinearLayout>

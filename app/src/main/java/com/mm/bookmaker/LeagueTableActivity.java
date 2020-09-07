@@ -64,7 +64,7 @@ public class LeagueTableActivity extends AppCompatActivity {
         tv5.setText("PKT");
         tv5.setTextColor(Color.BLACK);
         tv5.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tv5.setPadding(20,0,15,10);
+        tv5.setPadding(20,0,20,10);
         tbrow0.addView(tv5);
         stk.addView(tbrow0);
 
@@ -124,7 +124,7 @@ public class LeagueTableActivity extends AppCompatActivity {
             String points= String.valueOf(teams.get(i).getPoints());
             t6v.setText(points);
             t6v.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            t6v.setPadding(20,0,15,10);
+            t6v.setPadding(20,0,20,10);
             tbrow.addView(t6v);
 
             stk.addView(tbrow);

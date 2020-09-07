@@ -53,7 +53,7 @@ public class TopScorersActivity extends AppCompatActivity {
         tv3.setText("Bramki");
         tv3.setTextColor(Color.BLACK);
         tv3.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tv3.setPadding(10,0,5,5);
+        tv3.setPadding(10,0,15,5);
         tbrow0.addView(tv3);
         stk.addView(tbrow0);
 
@@ -79,7 +79,7 @@ public class TopScorersActivity extends AppCompatActivity {
             String goals= String.valueOf(players.get(i).getGoals());
             t4v.setText(goals);
             t4v.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            t4v.setPadding(10,0,5,5);
+            t4v.setPadding(10,0,15,5);
             tbrow.addView(t4v);
             stk.addView(tbrow);
         }
