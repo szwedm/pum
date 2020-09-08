@@ -35,7 +35,7 @@ public class TopScorersActivity extends AppCompatActivity {
         tv0.setText("#");
         tv0.setTextColor(Color.BLACK);
         tv0.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tv0.setPadding(5,0,10,5);
+        tv0.setPadding(25,0,10,5);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
         tv1.setText("Nazwisko");
@@ -53,7 +53,7 @@ public class TopScorersActivity extends AppCompatActivity {
         tv3.setText("Bramki");
         tv3.setTextColor(Color.BLACK);
         tv3.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tv3.setPadding(10,0,15,5);
+        tv3.setPadding(10,0,10,5);
         tbrow0.addView(tv3);
         stk.addView(tbrow0);
 
@@ -63,7 +63,7 @@ public class TopScorersActivity extends AppCompatActivity {
             String number= String.valueOf(i+1);
             t1v.setText(number);
             t1v.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            t1v.setPadding(5,0,10,5);
+            t1v.setPadding(25,0,10,5);
             tbrow.addView(t1v);
             TextView t2v = new TextView(this);
             t2v.setText(players.get(i).getLastName());
@@ -79,7 +79,7 @@ public class TopScorersActivity extends AppCompatActivity {
             String goals= String.valueOf(players.get(i).getGoals());
             t4v.setText(goals);
             t4v.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            t4v.setPadding(10,0,15,5);
+            t4v.setPadding(10,0,10,5);
             tbrow.addView(t4v);
             stk.addView(tbrow);
         }

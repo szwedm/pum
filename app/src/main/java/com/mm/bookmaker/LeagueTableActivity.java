@@ -34,7 +34,7 @@ public class LeagueTableActivity extends AppCompatActivity {
         tv0.setText( "#");
         tv0.setTextColor(Color.BLACK);
         tv0.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tv0.setPadding(15,0,20,10);
+        tv0.setPadding(30,0,20,10);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
         tv1.setText("Klub");
@@ -64,7 +64,7 @@ public class LeagueTableActivity extends AppCompatActivity {
         tv5.setText("PKT");
         tv5.setTextColor(Color.BLACK);
         tv5.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tv5.setPadding(20,0,20,10);
+        tv5.setPadding(20,0,10,10);
         tbrow0.addView(tv5);
         stk.addView(tbrow0);
 
@@ -95,7 +95,7 @@ public class LeagueTableActivity extends AppCompatActivity {
             String number= String.valueOf(i+1);
             t1v.setText(number);
             t1v.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            t1v.setPadding(15,0,20,10);
+            t1v.setPadding(30,0,20,10);
             tbrow.addView(t1v);
 
             t2v.setText(teams.get(i).getName());
@@ -124,7 +124,7 @@ public class LeagueTableActivity extends AppCompatActivity {
             String points= String.valueOf(teams.get(i).getPoints());
             t6v.setText(points);
             t6v.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            t6v.setPadding(20,0,20,10);
+            t6v.setPadding(20,0,10,10);
             tbrow.addView(t6v);
 
             stk.addView(tbrow);
